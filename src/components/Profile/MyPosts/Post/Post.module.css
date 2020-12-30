@@ -1,0 +1,9 @@
+.item{
+    margin: 10px;
+    margin-left: 20px;
+}
+.item>img{
+    height: 80px;
+    width: 80px;
+    border-radius: 8px;
+}

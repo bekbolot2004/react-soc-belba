@@ -1,0 +1,30 @@
+.header{
+    grid-area: h;
+    background: green;
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header>h1{
+    margin: 0 10px;
+    color: #00D8FF;
+}
+
+.react_logo{
+    display: flex;
+    animation: rotate_react_logo infinite 3s linear;
+    height: 50px;
+}
+
+
+
+@keyframes rotate_react_logo {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
