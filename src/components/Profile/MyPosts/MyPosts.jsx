@@ -7,6 +7,7 @@ const MyPosts = () => {
     let posts = [
         {id: 1, message: "Hi, how are you?", likesCount: 23},
         {id: 2, message: "It's my first post", likesCount: 4 },
+        {id: 2, message: "It's my first post", likesCount: 4 }, 
     ]
 
     let postsElements = posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
