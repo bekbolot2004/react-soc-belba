@@ -1,13 +1,13 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import s from './Dialogs.module.css'
+import React, {useEffect} from 'react'
+import {NavLink, useHistory} from 'react-router-dom'
+import style from './Dialogs.module.css'
 
 const DialogsItem = (props) => {
 
     let path = "/dialogs/" + props.id;
     
     return(
-        <div className={s.dialog + " " + s.active}>
+        <div className={style.dialog + " " + style.active}>
             <NavLink to={path}>{props.name}</NavLink>
         </div>
     )
@@ -15,39 +15,35 @@ const DialogsItem = (props) => {
 
 const Message = (props) => {
     return(
-        <div className={s.message}>{props.message}</div>
+        <div className={style.message}>{props.message}</div>
     )
 }
 
-const Dialogs = () => {
+const Dialogs = (props) => {
+    let dialogsElements = props.state.dialogs.map( d => <DialogsItem name ={d.name} id={d.id}/>);
+    let messagesElements = props.state.messages.map( m => <Message message={m.message}/>);
 
-    let dialogs = [
-        {id: 1, name: 'Alya & Love'},
-        {id: 2, name: 'Belba'},
-        {id: 3, name: 'Alya & Love'},
-        {id: 4, name: 'Alya & Love'},
-        {id: 5, name: 'Alinur'},
-        {id: 6, name: 'Dimych'},
-    ]
 
-    let messages = [
-        {id: 1, message: 'Salam'},
-        {id: 2, message: 'Belba'},
-        {id: 3, message: 'Waazzzap bro!'},
-        {id: 4, message: 'Привет!'},
-    ]
+    let newMessage = React.createRef();
 
-    let dialogsElements = dialogs.map( d => <DialogsItem name ={d.name} id={d.id}/>);
-    
-    let messagesElements = messages.map( m => <Message message={m.message}/>);
+    let sendMessage = () => {
+        let txt = newMessage.current.value;
+        alert(txt)
+    }
 
     return(
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+        <div className={style.dialogs}>
+            <div className={style.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
+            <div className={style.messages}>
                 {messagesElements}
+            </div>
+            <div>
+                <form className={style.btn_block}>
+                    <textarea ref={newMessage}></textarea>
+                    <button onClick={sendMessage}>Отправить</button>
+                </form>
             </div>
         </div>
     );

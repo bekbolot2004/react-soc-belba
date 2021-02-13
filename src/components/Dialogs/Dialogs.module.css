@@ -21,6 +21,12 @@
     font-weight: 600;
 }
 
-.messages .message{
-    
+.btn_block{
+    display: flex;
+    padding-left: 10px;
+}
+
+.btn_block>textarea{
+    width: 100%;
+    resize: none;
 }
