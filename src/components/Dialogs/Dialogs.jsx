@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {NavLink, useHistory} from 'react-router-dom'
 import style from './Dialogs.module.css'
+import {sendMessageCreater, updateNewMessageBodyCreater} from "../../redux/state";
 
 const DialogsItem = (props) => {
 
@@ -20,15 +21,20 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map( d => <DialogsItem name ={d.name} id={d.id}/>);
-    let messagesElements = props.state.messages.map( m => <Message message={m.message}/>);
 
+    let state = props.store.getState().dialogsPage;
 
-    let newMessage = React.createRef();
+    let dialogsElements = state.dialogs.map( d => <DialogsItem name ={d.name} id={d.id}/>);
+    let messagesElements = state.messages.map( m => <Message message={m.message}/>);
+    let newMessageBody = state.newMessageBody;
 
-    let sendMessage = () => {
-        let txt = newMessage.current.value;
-        alert(txt)
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageCreater());
+    }
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value;
+        props.store.dispatch(updateNewMessageBodyCreater(body));
     }
 
     return(
@@ -37,13 +43,11 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={style.messages}>
-                {messagesElements}
-            </div>
-            <div>
-                <form className={style.btn_block}>
-                    <textarea ref={newMessage}></textarea>
-                    <button onClick={sendMessage}>Отправить</button>
-                </form>
+                <div>{messagesElements}</div>
+                <div>
+                    <div><textarea value={newMessageBody} onChange={onNewMessageChange} placeholder="Enter your message"/></div>
+                    <div><button onClick={ onSendMessageClick }>Send</button></div>
+                </div>
             </div>
         </div>
     );

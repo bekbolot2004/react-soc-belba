@@ -1,5 +1,5 @@
 .body{
-  background: brown;
+  background: #0B0C10;
 }
 
 .app_wrapper{
@@ -11,13 +11,21 @@
   "n c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
 }
 
 .app_wrapper_content{
   grid-area: c;
   background: cornflowerblue;
 }
+
+.colors{
+  color: #0B0C10;
+  color: #1F2833;
+  color: #C5C6C7;
+  сolor: #66fcf1;
+  color: #45A29E;
+}
+
 
 
 
