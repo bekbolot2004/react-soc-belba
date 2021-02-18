@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {NavLink, useHistory} from 'react-router-dom'
 import style from './Dialogs.module.css'
-import {sendMessageCreater, updateNewMessageBodyCreater} from "../../redux/state";
+import {sendMessageCreater, updateNewMessageBodyCreater} from "../../redux/dialogs-reducer";
 
 const DialogsItem = (props) => {
 
